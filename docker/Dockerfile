@@ -150,3 +150,10 @@ COPY --from=pre-builder /app/.git_sha /app/.git_sha
 WORKDIR /app
 
 EXPOSE 3000
+
+# Copy entrypoint scripts
+COPY docker/entrypoints/ docker/entrypoints/
+RUN chmod +x docker/entrypoints/start.sh docker/entrypoints/rails.sh
+
+# CHATWOOT_ROLE=sidekiq → starts Sidekiq | unset/app → starts Rails server
+ENTRYPOINT ["docker/entrypoints/start.sh"]
