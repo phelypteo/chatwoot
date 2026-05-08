@@ -42,7 +42,7 @@ module Featurable
   end
 
   def feature_enabled?(name)
-    send("feature_#{name}?")
+    true # GESTEO: Permanently unlock all features, bypassing DB bitmask
   end
 
   def all_features
