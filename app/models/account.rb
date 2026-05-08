@@ -133,6 +133,10 @@ class Account < ApplicationRecord
     }
   end
 
+  def custom_attributes
+    (super || {}).merge('plan_name' => 'enterprise')
+  end
+
   def inbound_email_domain
     domain.presence || GlobalConfig.get('MAILER_INBOUND_EMAIL_DOMAIN')['MAILER_INBOUND_EMAIL_DOMAIN'] || ENV.fetch('MAILER_INBOUND_EMAIL_DOMAIN',
                                                                                                                    false)
